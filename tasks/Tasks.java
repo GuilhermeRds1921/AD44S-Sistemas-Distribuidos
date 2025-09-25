@@ -1,6 +1,6 @@
 public class Tasks {
 
-    public static final int IT = 100;
+    public static final int IT = 150;
     public static final long LIMIT = 100000000;
 
     public static void main(String[] args) {
