@@ -13,7 +13,7 @@ public class Server {
         System.out.println("Servidor UDP aguardando mensagens...");
 
         socket.receive(in);
-        System.out.println("Mensagem recebida: " + new String(in.getData(), 0, in.getLength()));
+        System.out.println("Mensagem recebida: " + new String(in.getData()));
 
         String mensagem = "Olá do servidor UDP!";
         byte[] buffer = mensagem.getBytes();
