@@ -11,7 +11,7 @@ public class Server {
                     System.out.println("Cliente conectado: " + clientSocket.getRemoteSocketAddress());
                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-
+                    int flag = 0;
                     String request;
                     while ((request = in.readLine()) != null) {
                         System.out.println("Recebido: " + request);
@@ -25,7 +25,7 @@ public class Server {
                         String op = parts[1];
                         double n2 = Double.parseDouble(parts[2]);
                         double result = 0;
-                        
+
                         switch (op) {
                             case "+":
                                 result = n1 + n2;
@@ -44,7 +44,8 @@ public class Server {
                                 result = n1 / n2;
                                 break;
                             case "exit":
-                                out.println("Saindo");
+                                System.out.println("Saindo...");
+                                flag = 1;
                                 break;
                             default:
                                 out.println("ERRO: operação desconhecida");
@@ -52,6 +53,11 @@ public class Server {
                         }
                         out.println("RESULTADO: " + result);
                     }
+
+                    if(flag == 1){
+                        break;
+                    }
+
                 } catch (IOException e) {
                     System.err.println("Erro no cliente: " + e.getMessage());
                 }
